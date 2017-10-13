@@ -1,11 +1,10 @@
 
 function toFixed(value, precision) {
-
     // if precision is 0 just round number and return 
   if(precision === 0) {
     return Math.round(value).toFixed(precision);
   }
-
+    
   var valueStr = value.toString();
   // Get current index of decimal
   var currentDecimalIndex = valueStr.indexOf('.');
@@ -13,7 +12,7 @@ function toFixed(value, precision) {
     if(currentDecimalIndex === -1) {
       return Math.round(value).toFixed(precision);
     }
-
+    
   return roundNumber(value,precision);  
 }
 
@@ -21,15 +20,12 @@ function moveDecimal(valStr, precision) {
   var valueStr = valStr.toString();
     // Get current index of decimal
   var currentDecimalIndex = valueStr.indexOf('.');
-
     // slice out decimal
   var beforeDecimal = valueStr.slice(0,currentDecimalIndex);
   var afterDecimal = valueStr.slice(currentDecimalIndex+1);
   var valueWithoutDecimal = beforeDecimal.concat(afterDecimal);
-
   // Where to move decimal point
   var newDecimalIndex = currentDecimalIndex + precision;
-
   // if new index value > length of value, will throw off correct decimal position
     while(valueWithoutDecimal.length < newDecimalIndex) {
     // add 0 to the string
@@ -45,13 +41,11 @@ function moveDecimal(valStr, precision) {
 
 // Round number
 function roundNumber(valueStr, precision) {
-
   // Get the updated value string
   var currentString = moveDecimal(valueStr,precision);
    // // round number
   var asNumber = Number(currentString);
   var rounded = Math.round(asNumber);
-
  // put number back to a string and move decimal back to where it started
   // if first number is 0 and before decimal, making it a number removes it so need to add it back to string
   var currentNumber;
@@ -71,7 +65,7 @@ function roundNumber(valueStr, precision) {
   if(finalResult.charAt(0) === '.') {
     return '0' + finalResult;
   }
-
+    
   return finalResult;
 
 }
